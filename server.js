@@ -168,6 +168,10 @@ async function connectToWhatsApp() {
 }
 
 // --- Endpoints de la API ---
+app.get("/", (req, res) => {
+  res.send("Servidor WhatsApp funcionando correctamente.");
+});
+
 app.post("/start-session", async (req, res) => {
   if (connectionStatus === "CONNECTED")
     return res.json({ message: "Ya conectado.", estado: connectionStatus });
