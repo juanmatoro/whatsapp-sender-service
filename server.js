@@ -171,7 +171,16 @@ async function connectToWhatsApp() {
 app.get("/", (req, res) => {
   res.send("Servidor WhatsApp funcionando correctamente.");
 });
-
+app.get("/health", (req, res) => {
+  // Un endpoint común para health checks
+  res
+    .status(200)
+    .json({
+      status: "ok",
+      message: "Service is healthy",
+      uptime: process.uptime(),
+    });
+});
 app.post("/start-session", async (req, res) => {
   if (connectionStatus === "CONNECTED")
     return res.json({ message: "Ya conectado.", estado: connectionStatus });
